@@ -45,7 +45,35 @@ struct ActionButton: View {
     }
 }
 
-
+struct TransactionRow: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "cart.fill")
+                .scaledToFit()
+                .font(.title)
+                .foregroundStyle(.white)
+                .padding()
+                .background(Color.red.opacity(0.5))
+                .clipShape(Circle())
+            
+            VStack(alignment: .leading) {
+                Text("Shopping")
+                    .font(.headline)
+                Text("17 Feb 2025")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            
+            Spacer()
+            
+            Text("-$140.00")
+                .font(.headline)
+                .foregroundColor(.red)
+        }
+        .background(Color.white)
+        .cornerRadius(10)
+    }
+}
 
 
 #Preview {
