@@ -11,7 +11,7 @@ import SwiftUI
 struct PracticeSwiftUiApp: App {
     var body: some Scene {
         WindowGroup {
-            WeatherView()
+            GridTestView()
         }
     }
 }
