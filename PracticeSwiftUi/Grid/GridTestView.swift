@@ -101,7 +101,8 @@ struct ProductItemWrapper: View {
 
 struct ProductDetailView: View {
     let product: Product
-    @State private var rotate = false
+    @State private var isRotating = false
+    @State private var isBouncing = false
 
     var body: some View {
         VStack(spacing: 20) {
@@ -109,14 +110,14 @@ struct ProductDetailView: View {
                 .resizable()
                 .renderingMode(.original)
                 .scaledToFit()
-                .frame(width: 200, height: 200)
-                .rotationEffect(.degrees(rotate ? 5 : -5))
-                .animation(
-                    .easeInOut(duration: 0.4).repeatForever(autoreverses: true),
-                    value: rotate
-                )
+                .frame(width: 180, height: 180)
+                .rotationEffect(.degrees(isRotating ? 10 : -10))
+                .offset(y: isBouncing ? -6 : 6)
+                .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: isRotating)
+                .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: isBouncing)
                 .onAppear {
-                    rotate = true
+                    isRotating = true
+                    isBouncing = true
                 }
 
             Text(product.name)
@@ -132,6 +133,7 @@ struct ProductDetailView: View {
         .navigationTitle("상세보기")
     }
 }
+
 
 
 struct Product: Identifiable {
